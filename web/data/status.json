@@ -1,0 +1,15 @@
+{
+  "retrieved": "2026-11-18",
+  "start": "2025-11-01",
+  "end": "2026-10-31",
+  "sourceLatest": "2026-11-12",
+  "records": 52238,
+  "missing": 0,
+  "routes": {
+    "FerryDH": "Alderney → Halifax",
+    "FerryHD": "Halifax → Alderney",
+    "FerryHW": "Halifax → Woodside",
+    "FerryWH": "Woodside → Halifax"
+  },
+  "boardings": 1721400
+}
