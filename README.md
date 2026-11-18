@@ -8,7 +8,7 @@ Compare Halifax to Alderney against the return direction on weekdays. Expand the
 
 ## Reading the results
 
-Pick two directions, a weekday or day group, and a month. The bars compare total reported boardings divided by the number of distinct observed dates for that particular route and clock hour. A date with several departures contributes their combined boardings. Missing hours are excluded and explicit zero counts are retained. The table and export include the totals and denominators. The earliest hour wins ties for the peak. Figures describe historical boarding activity and give no direct measurement of vessel capacity.
+Pick two directions, a weekday or day group, and a month. The bars compare total reported boardings divided by the number of distinct observed dates for that particular route and clock hour. A date with several departures contributes their combined boardings. Missing hours are excluded and explicit zero counts are retained. Each direction’s highlighted peak shows its average and how many observed dates contributed to it. The table and export include the totals and denominators for every hour. The earliest hour wins ties for the peak. Figures describe historical boarding activity and give no direct measurement of vessel capacity.
 
 ## Source and coverage
 

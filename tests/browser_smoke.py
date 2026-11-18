@@ -42,6 +42,18 @@ def main():
                 page.set_viewport_size({"width": 390, "height": 844})
                 assert page.evaluate("document.documentElement.scrollWidth <= window.innerWidth")
                 page.screenshot(path=str(screenshots / "mobile.png"), full_page=True)
+                # A fixed pair of peaks keeps this check independent of the weekly refresh.
+                page.route("**/data/profile.json", lambda route: route.fulfill(json=[
+                    ["FerryHD", "2026-01", 0, 0, 362, 1],
+                    ["FerryDH", "2026-01", 0, 8, 12, 3],
+                ]))
+                page.reload()
+                page.locator("#chart .hour").first.wait_for()
+                page.locator("#weekday").select_option("work")
+                assert page.locator("#finding").inner_text() == (
+                    "Halifax → Alderney peaked at 00:00, averaging 362 boardings across 1 observed date. "
+                    "Alderney → Halifax peaked at 08:00, averaging 4 boardings across 3 observed dates."
+                )
                 assert not errors, errors
                 browser.close()
             print("Browser checks passed: project subpath, route filters, 24 hours, CSV and mobile layout")
