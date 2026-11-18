@@ -27,7 +27,12 @@ try {
     el("a-col").textContent=names[0];el("b-col").textContent=names[1];
     const max=Math.max(1,...results.flat().map(r=>r.mean||0));
     const peaks=results.map(series=>series.filter(r=>r.days).sort((a,b)=>b.mean-a.mean)[0]);
-    el("finding").textContent=names.map((n,i)=>peaks[i]?n+" peaked at "+clock(peaks[i].hour)+" ("+fmt(peaks[i].mean)+" boardings per observed hour).":n+" has no records for this selection.").join(" ");
+    el("finding").textContent = names.map((name, i) => {
+      const peak = peaks[i];
+      if (!peak) return name + " has no records for this selection.";
+      const dates = peak.days === 1 ? "date" : "dates";
+      return `${name} peaked at ${clock(peak.hour)}, averaging ${fmt(peak.mean)} boardings across ${fmt(peak.days)} observed ${dates}.`;
+    }).join(" ");
     const bars=[],table=[];
     for(let h=0;h<24;h++){
       const pair=results.map(s=>s[h]),tr=create("tr");tr.append(create("th",clock(h)));
