@@ -4,6 +4,7 @@
 
 <!-- coolcode:guide -->
 Compare Halifax to Alderney against the return direction on weekdays. Expand the hourly figures to see how many dates contributed to each average, or download the comparison as CSV.
+Switch to Vancouver Harbour to compare SeaBus volumes by direction, season and day type.
 <!-- /coolcode:guide -->
 
 ## Reading the results
@@ -19,3 +20,7 @@ The weekly GitHub Action downloads the full selection, checks record IDs and rou
 ## Maintaining this tool
 
 Run `python3 scripts/refresh.py` to update the two JSON files under `web/data/`. Run `node --test tests/*.test.mjs`, `python3 -m unittest discover -s tests`, and `python3 scripts/build.py` for an offline validation and build. CI checks the app at a project subpath on desktop and mobile before publishing. The URL follows the repository’s spelling, `ferrycountss`.
+
+## Vancouver SeaBus
+
+TransLink’s [seasonal performance review](https://www.translink.ca/plans-and-projects/strategies-plans-and-guidelines/managing-the-transit-network) supplies average daily passenger volume for each published hour and direction, shown in Pacific time. Use the harbour selector to see each agency’s own dates and units. No observed-date denominators are published in the SeaBus file. A missing figure is distinct from a reported zero. The monthly refresh checks for the latest edition. Run `python3 scripts/refresh_seabus.py` to update it. [SeaBus Clock](https://coolcode.ca/seabusclock/) adds the dated timetable.

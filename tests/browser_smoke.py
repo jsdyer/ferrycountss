@@ -33,8 +33,8 @@ def main():
                 page.locator("#route").select_option("FerryHW")
                 page.locator("#weekday").select_option("work")
                 assert "Halifax → Woodside" in page.locator("#finding").inner_text()
-                page.locator("summary").click()
-                assert page.locator("tbody tr").count() == 24
+                page.locator("#halifax-area summary").first.click()
+                assert page.locator("#halifax-area tbody tr").count() == 24
                 with page.expect_download() as download:
                     page.locator("#download").click()
                 assert download.value.suggested_filename == "halifax-ferry-counts.csv"
@@ -54,6 +54,15 @@ def main():
                     "Halifax → Alderney peaked at 00:00, averaging 362 boardings across 1 observed date. "
                     "Alderney → Halifax peaked at 08:00, averaging 4 boardings across 3 observed dates."
                 )
+                page.select_option("#harbour","vancouver")
+                page.locator("#splot .spark").first.wait_for()
+                assert page.locator("#srows tr").count() == 24
+                assert "Southbound peaks at" in page.locator("#speak").inner_text()
+                page.select_option("#sseason","Summer")
+                assert page.locator("#vancouver-area").is_visible()
+                assert not page.locator("#halifax-area").is_visible()
+                page.select_option("#harbour","halifax")
+                assert page.locator("#halifax-area").is_visible()
                 assert not errors, errors
                 browser.close()
             print("Browser checks passed: project subpath, route filters, 24 hours, CSV and mobile layout")

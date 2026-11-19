@@ -1,7 +1,7 @@
 {
   "id": "ferrycountss",
   "title": "Ferry Counts",
-  "description": "Compare recorded boardings by direction, weekday and hour on the Halifax harbour ferries.",
+  "description": "Compare hourly passenger patterns on Halifax harbour ferries and Vancouver’s SeaBus.",
   "category": "places",
   "tags": [
     "Halifax",
@@ -10,7 +10,10 @@
     "ridership",
     "Alderney",
     "Woodside",
-    "Nova Scotia"
+    "Nova Scotia",
+    "Vancouver",
+    "SeaBus",
+    "British Columbia"
   ],
   "icon": "route",
   "url": "/ferrycountss/",
@@ -19,11 +22,11 @@
   "access": "browser",
   "data_info": {
     "mode": "snapshot",
-    "detail": "Halifax Transit records passenger boardings by direction and time. The hourly averages use dates with reported counts.",
-    "cadence": "Weekly",
+    "detail": "Halifax Transit supplies dated boarding counts and TransLink publishes seasonal SeaBus averages by hour and direction.",
+    "cadence": "Weekly Halifax · Monthly SeaBus edition check",
     "probes": [
       {
-        "label": "Data retrieved",
+        "label": "Halifax retrieved",
         "url": "https://coolcode.ca/ferrycountss/data/status.json",
         "path": [
           "retrieved"
@@ -38,6 +41,23 @@
       {
         "label": "Observation period",
         "url": "https://coolcode.ca/ferrycountss/data/status.json",
+        "path": [
+          "start"
+        ],
+        "end_path": [
+          "end"
+        ]
+      },
+      {
+        "label": "SeaBus retrieved",
+        "url": "https://coolcode.ca/ferrycountss/data/seabus-status.json",
+        "path": [
+          "retrieved"
+        ]
+      },
+      {
+        "label": "SeaBus coverage",
+        "url": "https://coolcode.ca/ferrycountss/data/seabus-status.json",
         "path": [
           "start"
         ],
