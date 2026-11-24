@@ -24,3 +24,11 @@ Run `python3 scripts/refresh.py` to update the two JSON files under `web/data/`.
 ## Vancouver SeaBus
 
 TransLink’s [seasonal performance review](https://www.translink.ca/plans-and-projects/strategies-plans-and-guidelines/managing-the-transit-network) supplies average daily passenger volume for each published hour and direction, shown in Pacific time. Use the harbour selector to see each agency’s own dates and units. No observed-date denominators are published in the SeaBus file. A missing figure is distinct from a reported zero. The monthly refresh checks for the latest edition. Run `python3 scripts/refresh_seabus.py` to update it. [SeaBus Clock](https://coolcode.ca/seabusclock/) adds the dated timetable.
+
+<!-- schedule-reliability -->
+## Schedule reliability
+
+Public GitHub repositories can have scheduled workflows disabled after 60 days of inactivity. A separate weekly [schedule guard](.github/workflows/schedule-guard.yml) calls GitHub's enable-workflow API for an explicit list of refresh workflows and itself. It can restore workflows disabled for inactivity, preserves manually disabled workflows, and runs independently of collection failures.
+
+This is an interim mitigation, not a scheduling guarantee: GitHub does not document active-workflow renewal as a permanent exemption, and scheduled runs can be delayed or dropped. A scheduler on our own Linux server is the planned independent trigger. The guard does not collect data, create dummy commits, or change source/check timestamps; successful collection and published data freshness still need monitoring.
+<!-- /schedule-reliability -->
